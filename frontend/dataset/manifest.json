@@ -1,0 +1,101 @@
+[
+  {
+    "id": "1",
+    "width": 300,
+    "height": 300,
+    "buildingPixels": 32588,
+    "greenRoofPixels": 1056,
+    "greenAllPixels": 1056,
+    "coverage": 3.2404566097950163,
+    "source": "用户提供 test 数据集人工标注",
+    "location": "深圳",
+    "date": null,
+    "resolutionMeters": null,
+    "geo": {
+      "crs": "EPSG:4326",
+      "origin": [
+        113.949201268,
+        22.545960691999998,
+        0
+      ],
+      "resolution": [
+        4.492e-06,
+        -4.492e-06,
+        0
+      ],
+      "rotation": false,
+      "bounds": [
+        113.949201268,
+        22.544613092,
+        113.950548868,
+        22.545960691999998
+      ]
+    }
+  },
+  {
+    "id": "15",
+    "width": 300,
+    "height": 300,
+    "buildingPixels": 16749,
+    "greenRoofPixels": 1681,
+    "greenAllPixels": 1681,
+    "coverage": 10.03642008478118,
+    "source": "用户提供 test 数据集人工标注",
+    "location": "深圳",
+    "date": null,
+    "resolutionMeters": null,
+    "geo": {
+      "crs": "EPSG:4326",
+      "origin": [
+        201902.9517070687,
+        2495206.5672397227,
+        0
+      ],
+      "resolution": [
+        0.5,
+        -0.5,
+        0
+      ],
+      "rotation": false,
+      "bounds": [
+        201902.9517070687,
+        2495056.5672397227,
+        202052.9517070687,
+        2495206.5672397227
+      ]
+    }
+  },
+  {
+    "id": "42",
+    "width": 300,
+    "height": 300,
+    "buildingPixels": 18266,
+    "greenRoofPixels": 5886,
+    "greenAllPixels": 5886,
+    "coverage": 32.223803788459435,
+    "source": "用户提供 test 数据集人工标注",
+    "location": "深圳",
+    "date": null,
+    "resolutionMeters": null,
+    "geo": {
+      "crs": "EPSG:4326",
+      "origin": [
+        113.899506272,
+        22.528599112,
+        0
+      ],
+      "resolution": [
+        4.492e-06,
+        -4.492e-06,
+        0
+      ],
+      "rotation": false,
+      "bounds": [
+        113.899506272,
+        22.527251512,
+        113.900853872,
+        22.528599112
+      ]
+    }
+  }
+]

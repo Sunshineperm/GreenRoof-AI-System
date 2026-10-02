@@ -1,0 +1,134 @@
+{
+  "name": "用户 GR-Net 训练模型",
+  "format": "ONNX float32",
+  "checkpoint_sha256": "6f5f3d47a32234cb695f6ae9de2a2f14c868d6ff0c9dadaf3785cc46e745a79b",
+  "sha256": "34628df0ec98cbd48405fb9dd5fbd28bac82871c0a5b5428bf2e2e857efbf075",
+  "bytes": 120333123,
+  "parts": [
+    {
+      "file": "grnet-00.bin",
+      "bytes": 8388608,
+      "sha256": "ccca06af7f60b61bad0fe2c2eb033000c55d4bfac7d74c6e2bd0446100af5ba6"
+    },
+    {
+      "file": "grnet-01.bin",
+      "bytes": 8388608,
+      "sha256": "451997bcd47945bbe9e49a56f6d84a0c1f4d8ad3f3e0a7e614bdf0bbe1445070"
+    },
+    {
+      "file": "grnet-02.bin",
+      "bytes": 8388608,
+      "sha256": "a35f3ca4c0246e889d6cc227a72d25eb256ca9b0ed24c43dd761d05f487e9731"
+    },
+    {
+      "file": "grnet-03.bin",
+      "bytes": 8388608,
+      "sha256": "ce76e1759af818780fe67d8effa6eccc3ab6281b3361ae04ea81023bf0fc1196"
+    },
+    {
+      "file": "grnet-04.bin",
+      "bytes": 8388608,
+      "sha256": "d9678cbec72ae6cc9a2da4b42d18b651d21274c6aae4569a010af5e438a4d752"
+    },
+    {
+      "file": "grnet-05.bin",
+      "bytes": 8388608,
+      "sha256": "401eefb39979ac5963e9b2d7047d2a0f673dd2a8b68185b328f60d94824682e6"
+    },
+    {
+      "file": "grnet-06.bin",
+      "bytes": 8388608,
+      "sha256": "36900cdd2f86333ff0a5e674787685b9515427170c0620c38474d2c26e6beb53"
+    },
+    {
+      "file": "grnet-07.bin",
+      "bytes": 8388608,
+      "sha256": "a751111ebba09a5c4a38df673fbb669fa51a21a3bf960cbfd36b6cb4549ed1b0"
+    },
+    {
+      "file": "grnet-08.bin",
+      "bytes": 8388608,
+      "sha256": "749e038f4513055393e3c4ece5518d2d814b6725a7267786677256a4f25d5c6e"
+    },
+    {
+      "file": "grnet-09.bin",
+      "bytes": 8388608,
+      "sha256": "ff512e85a982b1b422565f97ef60fdd2dde7907f5d204f67cdf60067f774753a"
+    },
+    {
+      "file": "grnet-10.bin",
+      "bytes": 8388608,
+      "sha256": "f5f1d16b73dfdbbc3f71cfd25379e08924e91374f82dc0a04c74053b6a1870da"
+    },
+    {
+      "file": "grnet-11.bin",
+      "bytes": 8388608,
+      "sha256": "cc4cf7a6692123804a92986d05b3fea7563e646700dbab69071d31ce6420e4ff"
+    },
+    {
+      "file": "grnet-12.bin",
+      "bytes": 8388608,
+      "sha256": "4b934c0b960481fa01f387a55aba12f28d079a57c7204c9936a29d0eeb7f0bf0"
+    },
+    {
+      "file": "grnet-13.bin",
+      "bytes": 8388608,
+      "sha256": "941515ae96147fc68854efc9800e30241a3ff2c09e411c88f13eaa4de9fccdbf"
+    },
+    {
+      "file": "grnet-14.bin",
+      "bytes": 2892611,
+      "sha256": "81085658324ec862a0b6a0eeaf93508b4a4b4cf590985e1afbaa10b981c26021"
+    }
+  ],
+  "input": "image",
+  "outputs": [
+    "green",
+    "roof"
+  ],
+  "input_shape": [
+    1,
+    5,
+    300,
+    300
+  ],
+  "tile_size": 300,
+  "mask_threshold": 0.1,
+  "building_gate_threshold": 0.1,
+  "normalization": "BGRN /255; NDVI (value+1)/2",
+  "validation": [
+    {
+      "output": "green",
+      "max_abs_error": 2.5331974029541016e-05,
+      "mean_abs_error": 1.5315272605676e-08,
+      "threshold_mask_disagreements": 0
+    },
+    {
+      "output": "roof",
+      "max_abs_error": 1.6123056411743164e-05,
+      "mean_abs_error": 9.386247512566115e-08,
+      "threshold_mask_disagreements": 0
+    }
+  ],
+  "sample_validation": {
+    "sample": "1",
+    "greenPixels": 1311,
+    "roofPixels": 33032,
+    "roofCoverage": 3.9688786631145554,
+    "greenMetrics": {
+      "tp": 925,
+      "fp": 386,
+      "fn": 131,
+      "f1": 0.7815800591465991,
+      "iou": 0.6414701803051318
+    },
+    "buildingMetrics": {
+      "tp": 30202,
+      "fp": 2830,
+      "fn": 2386,
+      "f1": 0.9205120390124962,
+      "iou": 0.8527302501552882
+    }
+  },
+  "notes": "此指标仅为单个测试样例核验，不能代表整个测试集精度。"
+}
