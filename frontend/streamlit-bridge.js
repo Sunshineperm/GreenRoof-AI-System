@@ -1,14 +1,53 @@
-// Streamlit transport only; all product functionality is the original RoofScope app.
+// Keep Streamlit's non-scrolling iframe as tall as the visible RoofScope page.
 (() => {
-  const send = (type, payload = {}) => window.parent.postMessage({isStreamlitMessage: true, type, ...payload}, '*');
-  let height = Math.max(850, Math.min(1250, (window.screen.availHeight || 1100) - 90));
-  const resize = () => send('streamlit:setFrameHeight', {height});
+  const send = (type, payload = {}) =>
+    window.parent.postMessage({isStreamlitMessage: true, type, ...payload}, '*');
+  let lastHeight = 0;
+  let pending = false;
+
+  const measure = () => {
+    pending = false;
+    if (!document.body) return;
+    // scrollHeight includes the existing iframe height and cannot shrink on
+    // navigation. The body's natural box can grow AND shrink with the page.
+    const body = document.body;
+    const style = window.getComputedStyle(body);
+    const height = Math.max(600, Math.ceil(
+      body.getBoundingClientRect().height +
+      (parseFloat(style.marginTop) || 0) +
+      (parseFloat(style.marginBottom) || 0)
+    ) + 2);
+    if (height === lastHeight) return;
+    lastHeight = height;
+    send('streamlit:setFrameHeight', {height});
+  };
+  const schedule = () => {
+    if (pending) return;
+    pending = true;
+    window.requestAnimationFrame(measure);
+  };
+
   window.addEventListener('message', (event) => {
     if (event.source !== window.parent || event.data?.type !== 'streamlit:render') return;
-    if (Number.isFinite(event.data.args?.height)) height = Math.max(850, event.data.args.height);
-    resize();
+    schedule();
   });
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  const start = () => {
+    new ResizeObserver(schedule).observe(document.body);
+    new MutationObserver(schedule).observe(document.body, {
+      subtree: true, childList: true, characterData: true, attributes: true,
+      attributeFilter: ['class', 'style', 'hidden', 'open']
+    });
+    document.addEventListener('load', schedule, true);
+    document.addEventListener('animationend', schedule, true);
+    document.fonts?.ready.then(schedule);
+    schedule();
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, {once: true});
+  } else {
+    start();
+  }
   send('streamlit:componentReady', {apiVersion: 1});
-  resize();
-  window.addEventListener('resize', resize);
 })();
